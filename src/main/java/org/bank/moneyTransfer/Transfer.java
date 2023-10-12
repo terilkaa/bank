@@ -12,7 +12,6 @@ public class Transfer {
 
         double fee = feeCalc.calculate(sourceAccount, amount);
         double feeAmount = fee + amount;
-        System.out.println(feeAmount+":");
         validateBalance.notEnoughBalance(sourceAccount,feeAmount);
         sourceAccount.setBalance(sourceAccount.getBalance() - feeAmount);
         destinationAccount.setBalance(destinationAccount.getBalance() + amount);

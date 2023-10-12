@@ -4,6 +4,7 @@ import org.bank.people.Owner;
 
 public class BaseAcc {
     protected Owner owner;
+
     protected String accountNum;
     protected double balance;
 
@@ -12,6 +13,12 @@ public class BaseAcc {
         this.owner = owner;
         this.accountNum = accountNum;
         this.balance = balance;
+    }
+    public String getAccountNum() {
+        return accountNum;
+    }
+    public Owner getOwner() {
+        return owner;
     }
 
     public void add(double value)
