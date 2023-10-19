@@ -13,8 +13,12 @@ public class AccountService {
     private SavingAccFactory savingAccFactory;
     @Inject
     private StudentAccFactory studentAccFactory;
-    @Inject
+
     private Map<String, BaseAcc> accounts;
+
+    public AccountService() {
+        this.accounts = new HashMap<>();
+    }
 
     public BaseAcc createStoreBaseAcc(Owner owner, double balance) {
         BaseAcc baseAcc = this.baseAccFactory.createBaseAcc(owner, balance);
