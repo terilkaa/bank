@@ -1,5 +1,6 @@
 package org.bank;
 
+import com.google.inject.Inject;
 import org.bank.account.*;
 import org.bank.moneyTransfer.InterestTransfer;
 import org.bank.moneyTransfer.Transfer;
@@ -16,19 +17,22 @@ import java.util.List;
 import java.util.Map;
 
 public class Bank {
-    Transfer transfer = new Transfer();
-    ConsoleLog consoleLog = new ConsoleLog();
-    AccountService accountService = new AccountService();
-
-    OwnerService ownerService = new OwnerService();
-
+    @Inject
+    Transfer transfer;
+    @Inject
+    ConsoleLog consoleLog;
+    @Inject
+    AccountService accountService;
+    @Inject
+    OwnerService ownerService;
+    @Inject
+    InterestTransfer interestTransfer;
     public void run() throws Exception {
-        Owner owner = ownerService.createOwner("nfoiw", "nfouew");
 
-        BaseAcc baseAcc = accountService.createStoreBaseAcc(ownerService.createOwner("noejf", "fnuewo"), 45663);
-        StudentAcc studentAcc = accountService.createStoreStudentAcc(ownerService.createOwner("noejf", "fnuo"), 45663);
+        BaseAcc baseAcc = accountService.createStoreBaseAcc(ownerService.createOwner("noejf", "fnuewo"), 2000);
+        StudentAcc studentAcc = accountService.createStoreStudentAcc(ownerService.createOwner("noejf", "fnuo"), 2000);
         consoleLog.accNumLog(studentAcc);
-        StudentAcc studentAcc1 = accountService.createStoreStudentAcc(ownerService.createOwner("njf", "fnuewo"), 45663);
+        StudentAcc studentAcc1 = accountService.createStoreStudentAcc(ownerService.createOwner("njf", "fnuewo"), 2000);
         consoleLog.accNumLog(studentAcc1);
 
 
@@ -38,7 +42,6 @@ public class Bank {
             consoleLog.balanceLog(acc);
             if (acc instanceof InterestAcc) {
                 consoleLog.balanceLog(acc);
-                InterestTransfer interestTransfer = new InterestTransfer();
                 interestTransfer.InterestAdd(acc);
                 consoleLog.balanceLog(acc);
             }

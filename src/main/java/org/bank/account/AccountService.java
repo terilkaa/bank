@@ -3,20 +3,18 @@ package org.bank.account;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.inject.Inject;
 import org.bank.people.Owner;
 
 public class AccountService {
-    private final BaseAccFactory baseAccFactory;
-    private final SavingAccFactory savingAccFactory;
-    private final StudentAccFactory studentAccFactory;
+    @Inject
+    private BaseAccFactory baseAccFactory;
+    @Inject
+    private SavingAccFactory savingAccFactory;
+    @Inject
+    private StudentAccFactory studentAccFactory;
+    @Inject
     private Map<String, BaseAcc> accounts;
-
-    public AccountService() {
-        this.accounts = new HashMap<>();
-        this.baseAccFactory = new BaseAccFactory();
-        this.savingAccFactory = new SavingAccFactory();
-        this.studentAccFactory = new StudentAccFactory();
-    }
 
     public BaseAcc createStoreBaseAcc(Owner owner, double balance) {
         BaseAcc baseAcc = this.baseAccFactory.createBaseAcc(owner, balance);

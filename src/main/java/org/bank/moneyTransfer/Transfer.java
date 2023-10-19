@@ -1,4 +1,5 @@
 package org.bank.moneyTransfer;
+import com.google.inject.Inject;
 import org.bank.validation.ValidateBalance;
 
 import org.bank.account.BaseAcc;
@@ -6,8 +7,10 @@ import org.bank.account.BaseAcc;
 
 public class Transfer {
 
-    ValidateBalance validateBalance = new ValidateBalance();
-    FeeCalc feeCalc = new FeeCalc();
+    @Inject
+   ValidateBalance validateBalance;
+    @Inject
+    FeeCalc feeCalc;
     public void moneyTransfer(BaseAcc sourceAccount, BaseAcc destinationAccount, double amount) throws Exception {
 
         double fee = feeCalc.calculate(sourceAccount, amount);

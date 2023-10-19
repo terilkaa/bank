@@ -1,19 +1,21 @@
 package org.bank.people;
 
+import com.google.inject.Inject;
+
 import java.util.LinkedList;
 
 public class OwnerService {
 
-    private final OwnerFactory ownerFactory;
     LinkedList<Owner> owners;
+    @Inject
+    private OwnerFactory ownerFactory;
 
     public OwnerService() {
-        this.ownerFactory = new OwnerFactory();
         this.owners = new LinkedList<>();
     }
 
     public Owner createOwner(String name, String lastName) {
-        Owner owner = this.ownerFactory.createOwner(name, lastName);
+        Owner owner = ownerFactory.createOwner(name, lastName);
         owners.add(owner);
         return owner;
     }

@@ -1,7 +1,10 @@
 package org.bank.account;
 
+import com.google.inject.Inject;
+
 public abstract class AccFactory {
 
-    AccountNumService accountNumService = new AccountNumService();
+    @Inject
+    AccountNumService accountNumService;
 
 }

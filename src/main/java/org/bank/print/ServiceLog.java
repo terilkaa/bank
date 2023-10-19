@@ -1,14 +1,13 @@
 package org.bank.print;
 
+import com.google.inject.Inject;
 import org.bank.account.BaseAcc;
 
 public class ServiceLog {
+
+    @Inject
     private ILogger printService;
 
-    public ServiceLog()
-    {
-        this.printService = new ConsoleLog();
-    }
     public void balanceLog(BaseAcc acc)
     {
         this.printService.balanceLog(acc);
