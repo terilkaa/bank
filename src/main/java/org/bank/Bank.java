@@ -2,6 +2,7 @@ package org.bank;
 
 import com.google.inject.Inject;
 import org.bank.account.*;
+import org.bank.json.JsonGson;
 import org.bank.json.JsonLog;
 import org.bank.moneyTransfer.InterestTransfer;
 import org.bank.moneyTransfer.Transfer;
@@ -28,12 +29,12 @@ public class Bank {
     OwnerService ownerService;
     @Inject
     InterestTransfer interestTransfer;
+    @Inject
+    JsonGson jsonGson;
 
     @Inject
     JsonLog jsonLog;
     public void run() throws Exception {
-
-        Owner owner = ownerService.createOwner("fewou","hfiwu");
 
         BaseAcc baseAcc = accountService.createStoreBaseAcc(ownerService.createOwner("noejf", "fnuewo"), 2000);
         StudentAcc studentAcc = accountService.createStoreStudentAcc(ownerService.createOwner("noejf", "fnuo"), 2000);
@@ -52,8 +53,10 @@ public class Bank {
                 consoleLog.balanceLog(acc);
             }
         }
-        jsonLog.jsonFromOwner(owner);
+        consoleLog.debug(jsonLog.generateJSONString(ownerService.createOwner("ncfwo", "jfiewo")));
+        consoleLog.debug(jsonLog.generateJSONString(ownerService.createOwner("jiewp","fnwo")));
 
+        consoleLog.debug(jsonGson.generateJSONString(ownerService.createOwner("jiewp","fnwo")));
     }
 }
 
