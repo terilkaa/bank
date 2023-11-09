@@ -2,6 +2,7 @@ package org.bank;
 
 import com.google.inject.Inject;
 import org.bank.account.*;
+import org.bank.json.IJsonGenerator;
 import org.bank.json.JsonGson;
 import org.bank.json.JsonLog;
 import org.bank.moneyTransfer.InterestTransfer;
@@ -22,7 +23,7 @@ public class Bank {
     @Inject
     Transfer transfer;
     @Inject
-    ConsoleLog consoleLog;
+    ILogger iLogger;
     @Inject
     AccountService accountService;
     @Inject
@@ -30,33 +31,30 @@ public class Bank {
     @Inject
     InterestTransfer interestTransfer;
     @Inject
-    JsonGson jsonGson;
-
-    @Inject
-    JsonLog jsonLog;
+    IJsonGenerator iJsonGenerator;
     public void run() throws Exception {
 
         BaseAcc baseAcc = accountService.createStoreBaseAcc(ownerService.createOwner("noejf", "fnuewo"), 2000);
         StudentAcc studentAcc = accountService.createStoreStudentAcc(ownerService.createOwner("noejf", "fnuo"), 2000);
-        consoleLog.accNumLog(studentAcc);
+        iLogger.accNumLog(studentAcc);
         StudentAcc studentAcc1 = accountService.createStoreStudentAcc(ownerService.createOwner("njf", "fnuewo"), 2000);
-        consoleLog.accNumLog(studentAcc1);
+        iLogger.accNumLog(studentAcc1);
 
 
         for (Map.Entry<String, BaseAcc> entrySet : accountService.getAccounts().entrySet()) {
             BaseAcc acc = entrySet.getValue();
 
-            consoleLog.balanceLog(acc);
+            iLogger.balanceLog(acc);
             if (acc instanceof InterestAcc) {
-                consoleLog.balanceLog(acc);
+                iLogger.balanceLog(acc);
                 interestTransfer.InterestAdd(acc);
-                consoleLog.balanceLog(acc);
+                iLogger.balanceLog(acc);
             }
         }
-        consoleLog.debug(jsonLog.generateJSONString(ownerService.createOwner("ncfwo", "jfiewo")));
-        consoleLog.debug(jsonLog.generateJSONString(ownerService.createOwner("jiewp","fnwo")));
+        iLogger.debug(iJsonGenerator.generateJSONString(ownerService.createOwner("ncfwo", "jfiewo")));
+        iLogger.debug(iJsonGenerator.generateJSONString(ownerService.createOwner("jiewp","fnwo")));
 
-        consoleLog.debug(jsonGson.generateJSONString(ownerService.createOwner("jiewp","fnwo")));
+        iLogger.debug(iJsonGenerator.generateJSONString(ownerService.createOwner("jiewp","fnwo")));
     }
 }
 
