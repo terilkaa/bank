@@ -1,13 +1,13 @@
-package org.bank.people;
+package org.bank.json.objects;
 
-public class Owner {
+public class OwnerJsonSerialObj {
 
     private int id;
     private String firstName;
 
     private String lastName;
 
-    public Owner(String firstName, String lastName, int id) {
+    public OwnerJsonSerialObj(String firstName, String lastName, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = id;
@@ -27,4 +27,5 @@ public class Owner {
     public int getId() {
         return id;
     }
+
 }
