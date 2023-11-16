@@ -1,5 +1,7 @@
-package org.bank.account;
+package org.bank.factories;
 
+import org.bank.account.BaseAcc;
+import org.bank.factories.AccFactory;
 import org.bank.people.Owner;
 
 public class BaseAccFactory extends AccFactory {
