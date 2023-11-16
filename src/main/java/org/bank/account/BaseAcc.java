@@ -4,7 +4,6 @@ import org.bank.people.Owner;
 
 public class BaseAcc {
     protected Owner owner;
-
     protected String accountNum;
     protected double balance;
 

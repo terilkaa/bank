@@ -4,8 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import org.bank.factories.BaseAccFactory;
+import org.bank.factories.SavingAccFactory;
+import org.bank.factories.StudentAccFactory;
 import org.bank.people.Owner;
-
+@Singleton
 public class AccountService {
     @Inject
     private BaseAccFactory baseAccFactory;
@@ -25,19 +29,16 @@ public class AccountService {
         this.accounts.put(baseAcc.getAccountNum(), baseAcc);
         return baseAcc;
     }
-
     public StudentAcc createStoreStudentAcc(Owner owner, double balance) {
         StudentAcc studentAcc = studentAccFactory.createStudentAcc(owner, balance);
         this.accounts.put(studentAcc.getAccountNum(), studentAcc);
         return studentAcc;
     }
-
     public SavingAcc createStoreSavingAcc(Owner owner, double balance) {
         SavingAcc savingAcc = savingAccFactory.createSavingAcc(owner, balance);
         this.accounts.put(savingAcc.getAccountNum(), savingAcc);
         return savingAcc;
     }
-
     public Map<String, BaseAcc> getAccounts() {
         return accounts;
     }
